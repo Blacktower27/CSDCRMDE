@@ -44,7 +44,7 @@ class Task:
         self.image_id = image_id        # Record the id of the image required by the task
         self.ddl = ddl                  # Record ddl
         self.cpu_freq_using = 0         # Record the cpu frequency assigned to the task
-        #task离基站的距离
+        # Distance of task from base station
         self.x = x
         self.y = y
         self.task_size = task_size      # Size of task
@@ -105,7 +105,7 @@ class Env:
                 random.uniform(config.image_size_min, config.image_size_max)))# Set the size of image
 
         # 3. create task
-        # 每个t时间到来几个任务
+        # Each t time comes several tasks
         for i in range(2000):
             for _ in range(random.randint(config.min_tasks, config.max_tasks)):
                 randn = int(np.random.normal(self.image_num // 2, 8, 1))

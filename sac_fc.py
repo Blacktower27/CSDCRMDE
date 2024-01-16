@@ -109,7 +109,7 @@ class SAC():
         td_target = rewards + self.gamma * next_value * (1 - dones)
         return td_target
 
-    def soft_update(self, net, target_net):  # 软更新
+    def soft_update(self, net, target_net):
         for param_target, param in zip(target_net.parameters(),
                                        net.parameters()):
             param_target.data.copy_(param_target.data * (1.0 - self.tau) +
@@ -136,7 +136,6 @@ class SAC():
         with torch.no_grad():
             action_prob= self.actor(state)
             action_prob = torch.mul(action_prob, action_mask)
-        # print(action_prob)
 
         action_dist = torch.distributions.Categorical(action_prob)
         action = action_dist.sample().item()
@@ -146,9 +145,7 @@ class SAC():
     def store_transition(self, transition):
         if len(self.buffer) < self.buffer_capacity:
             self.buffer.append(transition)
-            # self.counter += 1
         else:
-            # 如果缓冲区已满，删除最早的元素（先进先出）
             self.buffer.pop(0)
             self.buffer.append(transition)
         return len(self.buffer) % self.minimal_size == 0
@@ -172,22 +169,22 @@ class SAC():
         critic_2_loss.backward()
         self.critic_2_optimizer.step()
 
-        # 更新策略网络
+        # Update the policy network
         probs = self.actor(states)
         log_probs = torch.log(probs + 1e-8)
-        # 直接根据概率计算熵
+        # Calculate entropy directly based on probabilities
         entropy = -torch.sum(probs * log_probs, dim=1, keepdim=True)  #
         q1_value = self.critic_1(states)
         q2_value = self.critic_2(states)
         min_qvalue = torch.sum(probs * torch.min(q1_value, q2_value),
                                dim=1,
-                               keepdim=True)  # 直接根据概率计算期望
+                               keepdim=True)  # Calculate expectation directly based on probabilities
         actor_loss = torch.mean(-self.log_alpha.exp() * entropy - min_qvalue)
         self.actor_optimizer.zero_grad()
         actor_loss.backward()
         self.actor_optimizer.step()
 
-        # 更新alpha值
+        # Update the alpha value
         alpha_loss = torch.mean(
             (entropy - self.target_entropy).detach() * self.log_alpha.exp())
         self.log_alpha_optimizer.zero_grad()
@@ -205,10 +202,10 @@ def main():
     total_energys = []
     record = []
     total_download_time = []
-    save_interval = 10  # 设置保存间隔，每隔10个epoch保存一次
+    save_interval = 10
     fail_time = 0
     save_filename = '../log/fcSAC' + str(config.e1) + str(config.e2) + 'node' + str(config.EDGE_NODE_NUM) + 'cpu' + str(
-        config.node_cpu_freq_max) + 'task'+str(config.max_tasks)+'_'+str(config.min_tasks)+'.csv'  # 设置保存的文件名
+        config.node_cpu_freq_max) + 'task'+str(config.max_tasks)+'_'+str(config.min_tasks)+'.csv'
     i_epoch=0
     while i_epoch < config.epoch:
         ep_reward = []

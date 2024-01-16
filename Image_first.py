@@ -94,11 +94,9 @@ def main():
                 if i_epoch % save_interval == 0 and i_epoch > 0:
                     with open(save_filename, mode='w', newline='') as file:
                         writer = csv.writer(file)
-                        # 写入CSV文件的标题行
                         writer.writerow(
                             ["Episode", "Reward", "Total Time", "Total Energy", "complete ratio", "total_download_time",
                              "Fail Times"])
-                        # 将内存中的数据写入CSV文件
                         writer.writerows(record)
 
 if __name__ == '__main__':
