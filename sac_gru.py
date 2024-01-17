@@ -34,8 +34,8 @@ class Actor(nn.Module):
         super(Actor, self).__init__()
         self.gru = nn.GRU(num_state, 128, 2, batch_first=True)
         self.fc1 = nn.Linear(128, 64)
-        self.fc2 = nn.Linear(64, 32)
-        self.action_head = nn.Linear(32, num_action)
+        self.fc2 = nn.Linear(64, 16)
+        self.action_head = nn.Linear(16, num_action)
 
     def forward(self, x, hidden):
         x = x.unsqueeze(1)
