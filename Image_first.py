@@ -43,7 +43,7 @@ def main():
     total_download_time=[]
 
     save_interval = 10  # Set the save interval to save every 10 epochs
-    save_filename = 'log/Image_first' + str(config.e1) + str(config.e2) + 'node' + str(config.EDGE_NODE_NUM) + 'task'+str(config.max_tasks)+'_'+str(config.min_tasks)+ '.csv'  # 设置保存的文件名
+    save_filename = 'log/Image_first' + str(config.e1) + str(config.e2) + 'node' + str(config.EDGE_NODE_NUM) + 'task'+str(config.max_tasks)+'_'+str(config.min_tasks)+ '.csv' 
     for i_epoch in range(config.epoch):
         ep_reward = []
         ep_action_prob = 0
