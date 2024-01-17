@@ -155,7 +155,7 @@ def main():
     fail_time = 0
     i_epoch = 0
     save_interval = 10  # Set the saving interval, save every 10 epochs
-    save_filename = '../log/fcDQN' + str(config.e1) + str(config.e2) + 'node' + str(config.EDGE_NODE_NUM) + 'cpu' + str(
+    save_filename = 'log/fcDQN' + str(config.e1) + str(config.e2) + 'node' + str(config.EDGE_NODE_NUM) + 'cpu' + str(
         config.node_cpu_freq_max) + 'task' + str(config.max_tasks) + '_' + str(
         config.min_tasks) + '.csv'  # Set the filename for saving
     while i_epoch < config.epoch:

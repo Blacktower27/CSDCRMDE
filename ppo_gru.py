@@ -166,7 +166,7 @@ def main():
     record = []
     save_interval = 10  # Set the save interval to save every 10 epochs
     fail_time = 0
-    save_filename = '../log/gruPPO'+str(config.e1)+str(config.e2)+'node'+str(config.EDGE_NODE_NUM)+'cpu'+str(config.node_cpu_freq_max)+'task'+str(config.max_tasks)+'_'+str(config.min_tasks)+'.csv'
+    save_filename = 'log/gruPPO'+str(config.e1)+str(config.e2)+'node'+str(config.EDGE_NODE_NUM)+'cpu'+str(config.node_cpu_freq_max)+'task'+str(config.max_tasks)+'_'+str(config.min_tasks)+'.csv'
     i_epoch = 0
     while i_epoch < config.epoch:
         ep_reward = []

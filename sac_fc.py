@@ -204,7 +204,7 @@ def main():
     total_download_time = []
     save_interval = 10
     fail_time = 0
-    save_filename = '../log/fcSAC' + str(config.e1) + str(config.e2) + 'node' + str(config.EDGE_NODE_NUM) + 'cpu' + str(
+    save_filename = 'log/fcSAC' + str(config.e1) + str(config.e2) + 'node' + str(config.EDGE_NODE_NUM) + 'cpu' + str(
         config.node_cpu_freq_max) + 'task'+str(config.max_tasks)+'_'+str(config.min_tasks)+'.csv'
     i_epoch=0
     while i_epoch < config.epoch:
